@@ -1,0 +1,15 @@
+{
+  "flags": 32768,
+  "components": [
+    {
+      "type": 17,
+      "accent_color": null,
+      "components": [
+        {
+          "type": 10,
+          "content": ".mode is sigma"
+        }
+      ]
+    }
+  ]
+}

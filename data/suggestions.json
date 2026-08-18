@@ -1,0 +1,56 @@
+{
+    "suggestions": [
+        {
+            "id": "98a72dc306bf",
+            "status": "approved",
+            "createdAt": 1786062146031,
+            "reviewedAt": 1786062157366,
+            "reviewedBy": "1031195483923816501",
+            "denialReason": null,
+            "authorId": "1031195483923816501",
+            "title": "test",
+            "description": "test",
+            "media": "",
+            "threadId": "1535080645586460752"
+        },
+        {
+            "id": "ac1b7789a0f2",
+            "status": "pending",
+            "createdAt": 1786062241513,
+            "reviewedAt": null,
+            "reviewedBy": null,
+            "denialReason": null,
+            "authorId": "1031195483923816501",
+            "title": "test",
+            "description": "test",
+            "media": "https://yumi.onl/f/6a696220f3edd421876bf0d6",
+            "threadId": "1535081045991362560"
+        },
+        {
+            "id": "7a6a64a26fa4",
+            "status": "denied",
+            "createdAt": 1786066763866,
+            "reviewedAt": 1786066802873,
+            "reviewedBy": "1031195483923816501",
+            "denialReason": null,
+            "authorId": "1031195483923816501",
+            "title": "test",
+            "description": "test",
+            "media": "https://cdn.discordapp.com/ephemeral-attachments/1535074469616427019/1535099976475217931/Screen_Recording_2026-05-13_at_10.48.32_PM.mov?ex=6a7688c3&is=6a753743&hm=f61266a18de91c854015e4fd93b2608dc92739bfe2b572beeff9a080fdc80eee&",
+            "threadId": "1535100013548539964"
+        },
+        {
+            "id": "ec21213980c9",
+            "status": "approved",
+            "createdAt": 1786066882977,
+            "reviewedAt": 1786066910034,
+            "reviewedBy": "1031195483923816501",
+            "denialReason": null,
+            "authorId": "1031195483923816501",
+            "title": "this is a example",
+            "description": "please add this super great suggestion",
+            "media": "https://cdn.discordapp.com/ephemeral-attachments/1535074469616427019/1535100435512172595/Screenshot_2026-07-26_at_12.04.07_PM.png?ex=6a768930&is=6a7537b0&hm=4f637d49212debd58f44f449c163fe379f26ea16e711ff9abe4e415ba734b8cd&",
+            "threadId": "1535100512805064776"
+        }
+    ]
+}

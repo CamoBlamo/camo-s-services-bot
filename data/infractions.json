@@ -1,0 +1,55 @@
+{
+  "logChannelName": "infraction-logs",
+  "infractions": {
+    "1031195483923816501": [
+      {
+        "id": "1786049483664",
+        "reason": "test",
+        "issuedBy": "camoblamoo",
+        "issuedById": "1031195483923816501",
+        "issuedAt": "2026-08-06T20:51:23.664Z",
+        "voided": true,
+        "voidedBy": "camoblamoo",
+        "voidedById": "1031195483923816501",
+        "voidedAt": "2026-08-06T20:56:27.096Z",
+        "voidReason": "test"
+      },
+      {
+        "id": "1786049737121",
+        "reason": "testing",
+        "issuedBy": "camoblamoo",
+        "issuedById": "1031195483923816501",
+        "issuedAt": "2026-08-06T20:55:37.121Z",
+        "voided": true,
+        "voidedBy": "camoblamoo",
+        "voidedById": "1031195483923816501",
+        "voidedAt": "2026-08-06T20:57:08.370Z",
+        "voidReason": "No reason provided"
+      },
+      {
+        "id": "1786049884229",
+        "reason": "this is a test",
+        "issuedBy": "camoblamoo",
+        "issuedById": "1031195483923816501",
+        "issuedAt": "2026-08-06T20:58:04.230Z",
+        "voided": true,
+        "voidedBy": "camoblamoo",
+        "voidedById": "1031195483923816501",
+        "voidedAt": "2026-08-06T20:58:48.245Z",
+        "voidReason": "this is a test"
+      },
+      {
+        "id": "1786052290924",
+        "reason": "test",
+        "issuedBy": "camoblamoo",
+        "issuedById": "1031195483923816501",
+        "issuedAt": "2026-08-06T21:38:10.925Z",
+        "voided": true,
+        "voidedBy": "camoblamoo",
+        "voidedById": "1031195483923816501",
+        "voidedAt": "2026-08-06T21:38:46.954Z",
+        "voidReason": "test"
+      }
+    ]
+  }
+}

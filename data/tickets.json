@@ -1,0 +1,64 @@
+{
+  "panelChannelId": "1517691101069180958",
+  "panelMessageId": "1522611156559200330",
+  "clientPanelChannelId": "1518107940329095229",
+  "clientPanelMessageId": "1522611157494534327",
+  "transcriptChannelId": "1518105816849449000",
+  "staffRoleId": "1518092846559920238",
+  "categoryId": "1518104520369111160",
+  "ticketCount": 5,
+  "blacklist": {},
+  "tickets": {
+    "ticket-0001": {
+      "id": "ticket-0001",
+      "channelId": "1522081687411097740",
+      "openedBy": "1031195483923816501",
+      "type": "general",
+      "open": false,
+      "openedAt": "2026-07-02T03:29:13.183Z",
+      "closedAt": "2026-07-02T03:40:17.116Z",
+      "closedBy": "camoblamoo"
+    },
+    "ticket-0002": {
+      "id": "ticket-0002",
+      "channelId": "1522611262297739335",
+      "openedBy": "1031195483923816501",
+      "type": "general",
+      "open": false,
+      "openedAt": "2026-07-03T14:33:33.742Z",
+      "claimedBy": "1031195483923816501",
+      "closedAt": "2026-07-03T14:38:33.587Z",
+      "closedBy": "camoblamoo"
+    },
+    "ticket-0003": {
+      "id": "ticket-0003",
+      "channelId": "1522612648150302901",
+      "openedBy": "1031195483923816501",
+      "type": "general",
+      "open": false,
+      "openedAt": "2026-07-03T14:39:04.257Z",
+      "closedAt": "2026-07-03T14:40:29.174Z",
+      "closedBy": "camoblamoo"
+    },
+    "ticket-0004": {
+      "id": "ticket-0004",
+      "channelId": "1522613091744088164",
+      "openedBy": "1031195483923816501",
+      "type": "general",
+      "open": false,
+      "openedAt": "2026-07-03T14:40:49.885Z",
+      "closedAt": "2026-07-03T14:40:57.354Z",
+      "closedBy": "camoblamoo"
+    },
+    "ticket-0005": {
+      "id": "ticket-0005",
+      "channelId": "1538558667425714178",
+      "openedBy": "1031195483923816501",
+      "type": "client",
+      "open": false,
+      "openedAt": "2026-08-16T14:42:51.511Z",
+      "closedAt": "2026-08-16T14:58:21.496Z",
+      "closedBy": "camoblamoo"
+    }
+  }
+}

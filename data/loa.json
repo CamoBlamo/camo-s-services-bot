@@ -1,0 +1,19 @@
+{
+  "requests": {},
+  "active": {},
+  "history": [
+    {
+      "userId": "1031195483923816501",
+      "username": "camoblamoo",
+      "reason": "test",
+      "duration": 3,
+      "returnDate": "2026-08-09T21:39:15.771Z",
+      "requestedAt": "2026-08-06T21:39:15.772Z",
+      "approvedBy": "camoblamoo",
+      "approvedAt": "2026-08-06T21:39:24.233Z",
+      "status": "ended",
+      "endedBy": "camoblamoo",
+      "endedAt": "2026-08-06T21:39:40.136Z"
+    }
+  ]
+}
