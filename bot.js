@@ -162,7 +162,7 @@ client.on(Events.InteractionCreate, async interaction => {
         return command.handleModalSubmit(interaction);
     }
 
-   if (interaction.isStringSelectMenu() && interaction.customId === "notifications_select") {
+   if (interaction.isStringSelectMenu() && interaction.customId === 'notifications_select') {
         return handleNotificationsSelect(interaction)
    }
 
