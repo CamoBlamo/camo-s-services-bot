@@ -34,6 +34,7 @@ const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 const suggestCommand = require('./commands/suggest');
 const reportCommand = require('./commands/game-report');
+const notificationCommand = require('./commands/notification')
 
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
@@ -160,6 +161,10 @@ client.on(Events.InteractionCreate, async interaction => {
         const command = client.commands.get('raw-container');
         return command.handleModalSubmit(interaction);
     }
+
+   if (interaction.isStringSelectMenu() && interaction.customId === "notifications_select") {
+        return handleNotificationsSelect(interaction)
+   }
 
     //ticket and loa system
     const isTicketOrLoa =

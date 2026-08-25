@@ -55,3 +55,35 @@ module.exports = {
         })
     }
 }
+
+async function handleNotificationsSelect(interaction) {
+    const selected = interaction.values
+    const member = interaction.member
+
+    const toAdd = []
+    const toRemove = []
+
+    for (const r of NOTIFICATION_LABELS) {
+        const isSelected = selected.includes(r.value)
+        const hasRole = member.roles.cache.has(r.roleId)
+
+        if (isSelected && !hasRole) toAdd.push(r.roleId)
+        if (!isSelected && hasRole) toRemove.push(r.roleId)
+    }
+
+    if (toAdd.length) await member.roles.add(toAdd)
+    if (toRemove.length) await member.roles.remove(toRemove)
+
+    const addedNames = NOTIFICATION_LABELS.filter((r) => toAdd.includes(r.roleId)).map((r) => r.label)
+    const removedNames = NOTIFICATION_LABELS.filter((r) => toRemove.includes(r.roleId)).map((r) => r.label)
+
+    let summary = 'Your notification roles are up to date'
+    if (addedNames.length) summary += `\n **Added:** ${addedNames.join(', ')}`
+    if (removedNames.length) summary += `\n **Removed:** ${removedNames.join(', ')}`
+
+    await interaction.update({ content: undefined })
+    await interaction.followUp({
+        content: summary,
+        flags: MessageFlags.Ephemeral
+    })
+}
