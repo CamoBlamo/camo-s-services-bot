@@ -34,8 +34,7 @@ const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 const suggestCommand = require('./commands/suggest');
 const reportCommand = require('./commands/game-report');
-const notificationCommand = require('./commands/notification')
-
+const { handleNotificationsSelect } = require('./commands/notification')
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);

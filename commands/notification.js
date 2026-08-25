@@ -18,42 +18,26 @@ function buildContainer(member) {
                 .setDivider(true)
                 .setSpacing(SeparatorSpacingSize.Large)
         )
-        
-        const select = new StringSelectMenuBuilder()
-            .setCustomId('notifications_select')
-            .setPlaceholder('Choose your notification roles')
-            .setMinValues(0)
-            .setMaxValues(NOTIFICATION_LABELS.length)
-            .addOptions(
-                NOTIFICATION_LABELS.map((r) => ({
-                    label: r.label,
-                    description: r.description,
-                    value: r.value,
-                    emoji: r.emoji,
-                    default: member.roles.cache.has(r.roleId),
-                }))
-            )
-
-        container.addActionRowComponents(
-            new ActionRowBuilder().addComponents(select)
+    const select = new StringSelectMenuBuilder()
+        .setCustomId('notifications_select')
+        .setPlaceholder('Choose your notification roles')
+        .setMinValues(0)
+        .setMaxValues(NOTIFICATION_LABELS.length)
+        .addOptions(
+            NOTIFICATION_LABELS.map((r) => ({
+                label: r.label,
+                description: r.description,
+                value: r.value,
+                emoji: r.emoji,
+                default: member.roles.cache.has(r.roleId),
+            }))
         )
 
-        return container
-}
+    container.addActionRowComponents(
+        new ActionRowBuilder().addComponents(select)
+    )
 
-module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('notifications')
-        .setDescription('choose what you get notified for'),
-
-    async execute(interaction) {
-        const container = buildContainer(interaction.member)
-
-        await interaction.reply({
-            components: [container],
-            flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral
-        })
-    }
+    return container
 }
 
 async function handleNotificationsSelect(interaction) {
@@ -86,4 +70,21 @@ async function handleNotificationsSelect(interaction) {
         content: summary,
         flags: MessageFlags.Ephemeral
     })
+}
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('notifications')
+        .setDescription('choose what you get notified for'),
+
+    async execute(interaction) {
+        const container = buildContainer(interaction.member)
+
+        await interaction.reply({
+            components: [container],
+            flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral
+        })
+    },
+
+    handleNotificationsSelect
 }
