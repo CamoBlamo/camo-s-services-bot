@@ -18,6 +18,7 @@ const {
     AttachmentBuilder,
     ActivityType
 } = require('discord.js');
+const { handleMessage: handleHoneypotMessage } = require('./utils/honeypotManager');
 
 const client = new Client({
     intents: [
@@ -135,7 +136,7 @@ client.on(Events.InteractionCreate, async interaction => {
             await command.execute(interaction);
         } catch (error) {
             console.error(error);
-            const msg = { content: 'There was an error executing this command.', ephemeral: true };
+            const msg = { content: 'There was an error executing this command.', flags: MessageFlags.Ephemeral };
             if (interaction.replied || interaction.deferred) {
                 await interaction.followUp(msg);
             } else {
@@ -182,7 +183,7 @@ client.on(Events.InteractionCreate, async interaction => {
         //loa approve
         if (interaction.customId.startsWith('loa_approve_')) {
             const allowed = interaction.member.roles.cache.some(r => r.name === 'temp');
-            if (!allowed) return interaction.reply({ content: 'You do not have permission to do this.', ephemeral: true });
+            if (!allowed) return interaction.reply({ content: 'You do not have permission to do this.', flags: MessageFlags.Ephemeral });
 
             const parts = interaction.customId.replace('loa_approve_', '').split('_');
             const userId = parts[0];
@@ -191,7 +192,7 @@ client.on(Events.InteractionCreate, async interaction => {
             const loaData = readLoa();
             const request = loaData.requests[userId];
 
-            if (!request) return interaction.reply({ content: 'That request no longer exists.', ephemeral: true });
+            if (!request) return interaction.reply({ content: 'That request no longer exists.', flags: MessageFlags.Ephemeral });
 
             const returnDate = new Date(request.returnDate);
 
@@ -258,14 +259,14 @@ client.on(Events.InteractionCreate, async interaction => {
         // loa deny
         else if (interaction.customId.startsWith('loa_deny_')) {
             const allowed = interaction.member.roles.cache.some(r => r.name === 'temp');
-            if (!allowed) return interaction.reply({ content: 'You do not have permission to do this.', ephemeral: true });
+            if (!allowed) return interaction.reply({ content: 'You do not have permission to do this.', flags: MessageFlags.Ephemeral });
 
             const userId = interaction.customId.replace('loa_deny_', '');
 
             const loaData = readLoa();
             const request = loaData.requests[userId];
 
-            if (!request) return interaction.reply({ content: 'That request no longer exists.', ephemeral: true });
+            if (!request) return interaction.reply({ content: 'That request no longer exists.', flags: MessageFlags.Ephemeral });
 
             loaData.history.push({
                 ...request,
@@ -337,7 +338,7 @@ client.on(Events.InteractionCreate, async interaction => {
                     .addSeparatorComponents(s => s)
                     .addTextDisplayComponents(t => t.setContent(`-# If you believe this is a mistake, please contact a staff member.`));
 
-                return interaction.reply({ components: [blacklistContainer], flags: MessageFlags.IsComponentsV2, ephemeral: true });
+                return interaction.reply({ components: [blacklistContainer], flags: MessageFlags.IsComponentsV2 || MessageFlags.Ephemeral });
             }
 
             const existing = Object.values(data.tickets).find(
@@ -346,7 +347,7 @@ client.on(Events.InteractionCreate, async interaction => {
             if (existing) {
                 return interaction.reply({
                     content: `You already have an open ticket: <#${existing.channelId}>`,
-                    ephemeral: true
+                    flags: MessageFlags.Ephemeral
                 });
             }
 
@@ -420,7 +421,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
             return interaction.reply({
                 content: `Your ticket has been opened: <#${channel.id}>`,
-                ephemeral: true
+                flags: MessageFlags.Ephemeral
             });
         }
 
@@ -430,11 +431,11 @@ client.on(Events.InteractionCreate, async interaction => {
             const data = readTickets();
             const ticket = data.tickets[ticketId];
 
-            if (!ticket) return interaction.reply({ content: 'Ticket not found.', ephemeral: true });
+            if (!ticket) return interaction.reply({ content: 'Ticket not found.', flags: MessageFlags.Ephemeral });
 
             const isStaff = interaction.member.roles.cache.has(data.staffRoleId);
             const isOwner = ticket.openedBy === interaction.user.id;
-            if (!isStaff && !isOwner) return interaction.reply({ content: 'You do not have permission to close this ticket.', ephemeral: true });
+            if (!isStaff && !isOwner) return interaction.reply({ content: 'You do not have permission to close this ticket.', flags: MessageFlags.Ephemeral });
 
             await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
@@ -495,7 +496,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
         //ticket cancel close
         else if (interaction.customId === 'ticket_cancel_close') {
-            return interaction.reply({ content: 'Ticket close cancelled.', ephemeral: true });
+            return interaction.reply({ content: 'Ticket close cancelled.', flags: MessageFlags });
         }
 
         return;
@@ -503,6 +504,14 @@ client.on(Events.InteractionCreate, async interaction => {
 
     
     return suggestCommand.handleInteraction(interaction);
+});
+
+client.on(Events.MessageCreate, async message => {
+    try {
+        await handleHoneypotMessage(message);
+    } catch (error) {
+        console.error('Honeypot handler error:', error);
+    }
 });
 
 client.login(process.env.DISCORD_TOKEN);
