@@ -19,6 +19,7 @@ const {
     ActivityType
 } = require('discord.js');
 const { handleMessage: handleHoneypotMessage } = require('./utils/honeypotManager');
+const { startStatusRotator } = require('./utils/statusRotator');
 
 const client = new Client({
     intents: [
@@ -61,14 +62,6 @@ client.once(Events.ClientReady, async readyClient => {
     } catch (error) {
         console.error('Failed to sync commands:', error);
     }
-
-    client.user.setPresence({
-        status: 'do-not-disturb',
-        activities: [{
-            name: 'over the server',
-            type: ActivityType.Watching
-        }]
-    });
 
 
     setInterval(async () => {
@@ -123,6 +116,8 @@ client.once(Events.ClientReady, async readyClient => {
 
         if (changed) writeLoa(loaData);
     }, 60 * 60 * 1000);
+
+    startStatusRotator(client);
 });
 
 client.on(Events.InteractionCreate, async interaction => {
